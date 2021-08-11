@@ -14,9 +14,10 @@ class CreateRecipeListsTable extends Migration
     public function up()
     {
         Schema::create('recipe_lists', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('title');
-            $table->json('recipes');
+            $table->jsonb('recipes')->nullable();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

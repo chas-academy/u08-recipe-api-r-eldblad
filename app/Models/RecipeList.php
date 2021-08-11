@@ -2,19 +2,26 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class RecipeList extends Model
 {
+    use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'user_id',
         'title',
-        'recipes'
+        'recipes',
     ];
 
-    public function recipes()
+    public function user()
     {
-        return $this->hasMany(Recipe::class);
+        return $this->belongsTo(User::class);
     }
 }

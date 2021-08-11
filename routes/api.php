@@ -20,11 +20,14 @@ Route::group([
     'prefix' => 'auth'
 
 ], function ($router) {
+
+    // USER AUTHENTICATION ROUTES
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
-
-    Route::get('/recipe-lists', [RecipeListController::class, 'index']);
+// RECIPE LIST CRUD ROUTES
+    Route::get('/recipe-lists', [RecipeListController::class, 'show']);
+    Route::post('/recipe-lists', [RecipeListController::class, 'store']);
 });
