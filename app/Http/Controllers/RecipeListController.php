@@ -29,7 +29,7 @@ class RecipeListController extends Controller
         $recipeList = new RecipeList();
         $recipeList->title = $request->title;
 
-        if ($this->user->recipeLists()->save($recipeList)) {
+        if ($this->user->recipeClass()->save($recipeList)) {
             return response()->json([
                 'success' => true,
                 'recipeList' => $recipeList
