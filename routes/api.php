@@ -29,6 +29,6 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
 // RECIPE LIST CRUD ROUTES
-    Route::get('/recipe-lists', [RecipeListController::class, 'show']);
+/*     Route::get('/recipe-lists', [RecipeListController::class, 'show']); */
     Route::post('/recipe-lists', [RecipeListController::class, 'store']);
 });

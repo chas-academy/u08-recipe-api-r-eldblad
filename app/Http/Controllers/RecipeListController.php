@@ -12,9 +12,9 @@ class RecipeListController extends Controller
 {
 
     protected $user;
-    public function show($id)
+ /*    public function show($id)
     {
-        $recipeList = $this->user->recipeList()->find($id);
+        $recipeList = $this->user->recipeClass()->find($id);
         if (!$recipeList) {
             return response()->json([
                 'success' => false,
@@ -22,17 +22,23 @@ class RecipeListController extends Controller
             ], 400);
         }
         return $recipeList;
+    } */
+
+     public function __construct()
+    {
+
     }
 
      public function store(Request $request)
     {
-        $recipeList = new RecipeList();
-        $recipeList->title = $request->title;
-
-        if ($this->user->recipeClass()->save($recipeList)) {
+        return response()->json(auth()->user());
+        $input = $request->all();
+        if(auth()->user()) {
+            $list = RecipeList::create(['title'->$title, 'user_id'->auth()->user()->id]);
+            $input['user_id'] = $list->id;
             return response()->json([
                 'success' => true,
-                'recipeList' => $recipeList
+                'recipeList' => $list
             ]);
         } else {
             return response()->json([
