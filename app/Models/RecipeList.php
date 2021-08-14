@@ -18,7 +18,8 @@ class RecipeList extends Model
      */
     protected $fillable = [
         'title',
-        'recipes'
+        'recipes',
+        'user_id'
     ];
 
     public function user()

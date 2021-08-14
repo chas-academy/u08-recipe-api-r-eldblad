@@ -31,11 +31,9 @@ class RecipeListController extends Controller
 
      public function store(Request $request)
     {
-        return response()->json(auth()->user());
         $input = $request->all();
         if(auth()->user()) {
-            $list = RecipeList::create(['title'->$title, 'user_id'->auth()->user()->id]);
-            $input['user_id'] = $list->id;
+            $list = RecipeList::create(['title' => $request->input('title'), 'user_id' => auth()->user()->id]);
             return response()->json([
                 'success' => true,
                 'recipeList' => $list
