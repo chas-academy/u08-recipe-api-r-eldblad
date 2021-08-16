@@ -12,21 +12,26 @@ class RecipeListController extends Controller
 {
 
     protected $user;
- /*    public function show($id)
+
+    public function __construct()
     {
-        $recipeList = $this->user->recipeClass()->find($id);
-        if (!$recipeList) {
+
+    }
+
+    public function index()
+    {
+        if (auth()->user()) {
+            $recipe_lists = RecipeList::all()->toArray();
+            return response()->json([
+                'success' => true,
+                'recipeLists' => $recipe_lists,
+            ]);
+        } else {
             return response()->json([
                 'success' => false,
-                'message' => "Recipes list with id $id can't be found",
-            ], 400);
+                'recipeList' => $recipe_lists
+            ]);
         }
-        return $recipeList;
-    } */
-
-     public function __construct()
-    {
-
     }
 
      public function store(Request $request)
@@ -48,7 +53,7 @@ class RecipeListController extends Controller
 
     public function delete(Request $request) 
     {
-
+        
     }
 
     public function update(Request $request)
