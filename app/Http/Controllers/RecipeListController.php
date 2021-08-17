@@ -22,14 +22,11 @@ class RecipeListController extends Controller
     {
         if (auth()->user()) {
             $recipe_lists = RecipeList::all()->toArray();
-            return response()->json([
-                'success' => true,
-                'recipeLists' => $recipe_lists,
-            ]);
+            return $recipe_lists;
         } else {
             return response()->json([
                 'success' => false,
-                'recipeList' => $recipe_lists
+                'message' => "No recipe lists found",
             ]);
         }
     }
@@ -51,9 +48,16 @@ class RecipeListController extends Controller
         }
     }
 
-    public function delete(Request $request) 
+    public function delete($id) 
     {
-        
+        if(auth()->user()) {
+            return RecipeList::destroy($id);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'The recipe list didnt get deleted'
+            ]);
+        }
     }
 
     public function update(Request $request)
