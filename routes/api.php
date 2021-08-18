@@ -31,5 +31,6 @@ Route::group([
 // RECIPE LIST CRUD ROUTES
     Route::get('/recipe-lists', [RecipeListController::class, 'index']);
     Route::post('/recipe-lists', [RecipeListController::class, 'store']);
-    Route::post('/recipe-lists/{id}', [RecipeListController::class, 'delete']);
+    Route::put('/recipe-lists/{id}', [RecipeListController::class, 'update']);
+    Route::delete('/recipe-lists/{id}', [RecipeListController::class, 'delete']);
 });

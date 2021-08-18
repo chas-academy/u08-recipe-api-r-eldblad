@@ -18,7 +18,7 @@ class RecipeList extends Model
      */
     protected $fillable = [
         'title',
-        'recipes',
+        'recipe_ids',
         'user_id'
     ];
 
