@@ -30,6 +30,7 @@ Route::group([
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
 // RECIPE LIST CRUD ROUTES
     Route::get('/recipe-lists', [RecipeListController::class, 'index']);
+    Route::get('recipe-lists/{id}', [RecipeListController::class, 'get']);
     Route::post('/recipe-lists', [RecipeListController::class, 'store']);
     Route::put('/recipe-lists/{id}', [RecipeListController::class, 'update']);
     Route::delete('/recipe-lists/{id}', [RecipeListController::class, 'delete']);

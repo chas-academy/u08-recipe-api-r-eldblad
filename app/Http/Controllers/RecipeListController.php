@@ -31,6 +31,19 @@ class RecipeListController extends Controller
         }
     }
 
+    public function get($id)
+    {
+        if (auth()->user()) {
+            $recipe_list = RecipeList::find($id);
+            return $recipe_list;
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'This list doesnt exist'
+            ]);
+        }
+    }
+
      public function store(Request $request)
     {
         $input = $request->all();
@@ -51,9 +64,11 @@ class RecipeListController extends Controller
     public function delete($id) 
     {
         if(auth()->user()) {
-            $recipeList = RecipeList::find($id);
-            $recipeList->delete();
-            return $recipeList;
+            $list = RecipeList::find($id)->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'Recipe list was deleted',
+            ]);
         } else {
             return response()->json([
                 'success' => false,
