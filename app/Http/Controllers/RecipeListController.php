@@ -21,7 +21,7 @@ class RecipeListController extends Controller
     public function index()
     {
         if (auth()->user()) {
-            $recipe_lists = RecipeList::all()->toArray();
+            $recipe_lists = \DB::table('recipe_lists')->where('user_id', auth()->user()->id)->get();
             return $recipe_lists;
         } else {
             return response()->json([
